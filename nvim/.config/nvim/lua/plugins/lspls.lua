@@ -13,7 +13,7 @@ return {
         capabilities = handlers.capabilities
       }
 
-      local lsps = { "gopls", "zls", "clangd", "html", "cssls" }
+      local lsps = { "gopls", "zls", "clangd", "html", "cssls",  "gdscript" }
       for _, ls in ipairs(lsps) do
         vim.lsp.config(ls, config)
         vim.lsp.enable(ls)

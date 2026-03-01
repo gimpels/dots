@@ -32,6 +32,10 @@ return {
               ["<C-f>"] = actions.send_to_qflist,
             },
           },
+          file_ignore_patterns = {
+            "%.uid",
+            "server.pipe",
+          }
         },
         pickers = {
           buffers = {
