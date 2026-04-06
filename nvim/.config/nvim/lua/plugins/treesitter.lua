@@ -1,38 +1,31 @@
 return {
   {
     "nvim-treesitter/nvim-treesitter",
-    build = ":TSUpdate",
+    branch = "main",
     lazy = false,
-    init = function(plugin)
-      -- PERF: add nvim-treesitter queries to the rtp and it's custom query predicates early
-      -- This is needed because a bunch of plugins no longer `require("nvim-treesitter")`, which
-      -- no longer trigger the **nvim-treesitter** module to be loaded in time.
-      -- Luckily, the only things that those plugins need are the custom queries, which we make available
-      -- during startup.
-      require("lazy.core.loader").add_to_rtp(plugin)
-      require("nvim-treesitter.query_predicates")
+    init = function()
+      local treesitte = require('nvim-treesitter')
+
+      treesitte.install { 'rust', 'go', 'zig', 'yaml', 'javascript' }
+
+      vim.api.nvim_create_autocmd('FileType', {
+        callback = function()
+          -- Enable treesitter highlighting
+          pcall(vim.treesitter.start)
+
+          -- Enable treesitter-based indentation
+          vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+
+          -- Enable treesitter-based folding
+          vim.wo[0][0].foldexpr = 'v:lua.vim.treesitter.foldexpr()'
+          -- vim.wo[0][0].foldmethod = 'expr'
+        end,
+      })
     end,
     opts = {
-      ensure_installed = "all",
       sync_install = false,
       auto_install = true,
-      ignore_install = { "norg" },
-
-      highlight = {
-        enable = true,
-        disable = { "" },
-        additional_vim_regex_highlighting = false,
-      },
     },
-    config = function(_, opts)
-      require("nvim-treesitter.configs").setup(opts)
-
-      local hocon_group = vim.api.nvim_create_augroup("hocon", { clear = true })
-      vim.api.nvim_create_autocmd(
-        { "BufNewFile", "BufRead" },
-        { group = hocon_group, pattern = "*.conf", command = "set ft=hocon" }
-      )
-    end,
   },
   {
     "nvim-treesitter/nvim-treesitter-context",
