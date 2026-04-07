@@ -4,9 +4,9 @@ return {
     branch = "main",
     lazy = false,
     init = function()
-      local treesitte = require('nvim-treesitter')
+      local treesitter = require('nvim-treesitter')
 
-      treesitte.install { 'rust', 'go', 'zig', 'yaml', 'javascript' }
+      treesitter.install { 'rust', 'go', 'zig', 'yaml', 'javascript' }
 
       vim.api.nvim_create_autocmd('FileType', {
         callback = function()
@@ -18,7 +18,6 @@ return {
 
           -- Enable treesitter-based folding
           vim.wo[0][0].foldexpr = 'v:lua.vim.treesitter.foldexpr()'
-          -- vim.wo[0][0].foldmethod = 'expr'
         end,
       })
     end,
