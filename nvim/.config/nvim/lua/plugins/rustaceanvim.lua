@@ -2,7 +2,6 @@ return {
   {
     "mrcjkb/rustaceanvim",
     lazy = false, -- this plugin is already lazy
-    version = '^6',
     init = function()
       local handlers = require("config.lsp.handlers")
 
@@ -71,14 +70,6 @@ return {
               },
             },
           },
-        },
-        dap = {
-          adapter = {
-            type = "executable",
-            command = "lldb-vscode",
-            name = "Rust lldb",
-          },
-          autoload_configurations = true,
         },
       }
     end
