@@ -1,10 +1,19 @@
 return {
   {
-    "EdenEast/nightfox.nvim",
+    "oskarnurm/koda.nvim",
     lazy = false,
-    priority = 1000, -- load this before all the other start plugins
+    priority = 1000,
     config = function()
-      vim.cmd("colorscheme nordfox")
+      require("koda").setup({
+        styles = {
+          functions = { bold = false }
+        }
+      })
+      vim.cmd("colorscheme koda-glade")
     end,
-  }
+  },
+  {
+    "EdenEast/nightfox.nvim",
+  },
+
 }
