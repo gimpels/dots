@@ -7,6 +7,7 @@ return {
       local handlers = require("config.lsp.handlers")
 
       metals_config.settings = {
+        startMcpServer = true,
         showImplicitArguments = false,
         showImplicitConversionsAndClasses = false,
         showInferredType = false,
