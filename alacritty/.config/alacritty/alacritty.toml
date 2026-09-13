@@ -1,6 +1,7 @@
 [general]
 import = [
   "~/.config/alacritty/keybindings.toml",
+  "~/.config/alacritty/rose-pine-dawn.toml",
 ]
 
 [font]
