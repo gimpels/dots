@@ -6,15 +6,12 @@ return {
     init = function()
       local treesitter = require('nvim-treesitter')
 
-      treesitter.install { 'rust', 'go', 'zig', 'yaml', 'javascript' }
+      treesitter.install { 'rust', 'go', 'zig', 'yaml', 'javascript', 'scala' }
 
       vim.api.nvim_create_autocmd('FileType', {
         callback = function()
           -- Enable treesitter highlighting
           pcall(vim.treesitter.start)
-
-          -- Enable treesitter-based indentation
-          vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
 
           -- Enable treesitter-based folding
           vim.wo[0][0].foldexpr = 'v:lua.vim.treesitter.foldexpr()'
