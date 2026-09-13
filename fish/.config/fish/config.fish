@@ -57,6 +57,7 @@ function fish_prompt
 	  set_color normal
 end
 
+set -gx FZF_DEFAULT_OPTS "$FZF_DEFAULT_OPTS --color=bg:#fbfbfb,fg:#403f53,hl:#994cc3 --color=bg+:#f0f0f0,fg+:#111111,hl+:#994cc3 --color=info:#9392a2,prompt:#0c969b,pointer:#2aa298 --color=marker:#4876d6,spinner:#2aa298,header:#9392a2"
 
 set PATH ~/.local/bin \
    ~/.cargo/bin $PATH
